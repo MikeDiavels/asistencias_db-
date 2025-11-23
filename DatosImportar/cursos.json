@@ -1,0 +1,15 @@
+{"_id":{"$oid":"651b12345678901234567891"},"codigo":"MAT101","nombre":"Cálculo I","docente":"Dr. Roberto Álvarez"}
+{"_id":{"$oid":"651b12345678901234567892"},"codigo":"MAT102","nombre":"Cálculo II","docente":"Dra. Carmen Sarmiento"}
+{"_id":{"$oid":"651b12345678901234567893"},"codigo":"FIS101","nombre":"Física General","docente":"Dr. Luis Méndez"}
+{"_id":{"$oid":"651b12345678901234567894"},"codigo":"FIS102","nombre":"Física Avanzada","docente":"Dra. Patricia Rojas"}
+{"_id":{"$oid":"651b12345678901234567895"},"codigo":"QUI101","nombre":"Química General","docente":"Dr. Jorge Silva"}
+{"_id":{"$oid":"651b12345678901234567896"},"codigo":"ING101","nombre":"Inglés I","docente":"Prof. Laura Thompson"}
+{"_id":{"$oid":"651b12345678901234567897"},"codigo":"ING102","nombre":"Inglés II","docente":"Prof. Michael Brown"}
+{"_id":{"$oid":"651b12345678901234567898"},"codigo":"PRO101","nombre":"Programación I","docente":"Ing. Carlos Fuentes"}
+{"_id":{"$oid":"651b12345678901234567899"},"codigo":"PRO102","nombre":"Programación II","docente":"Ing. Ana Martínez"}
+{"_id":{"$oid":"651b1234567890123456789a"},"codigo":"BDD101","nombre":"Bases de Datos","docente":"Mg. Ricardo Ortega"}
+{"_id":{"$oid":"651b1234567890123456789b"},"codigo":"RED101","nombre":"Redes de Computadores","docente":"Dr. Fernando Castro"}
+{"_id":{"$oid":"651b1234567890123456789c"},"codigo":"ETI101","nombre":"Ética Profesional","docente":"Dra. Marta Villanueva"}
+{"_id":{"$oid":"651b1234567890123456789d"},"codigo":"ADM101","nombre":"Administración","docente":"Mg. Pedro Navarro"}
+{"_id":{"$oid":"651b1234567890123456789e"},"codigo":"ECO101","nombre":"Economía","docente":"Dr. Sergio Ramírez"}
+{"_id":{"$oid":"651b1234567890123456789f"},"codigo":"DER101","nombre":"Derecho Constitucional","docente":"Dra. Isabel Mendoza"}

@@ -1,0 +1,30 @@
+{"_id":{"$oid":"651a12345678901234567891"},"codigo":"20230001","nombre":"Ana María García López","programa":"Ingeniería de Sistemas"}
+{"_id":{"$oid":"651a12345678901234567892"},"codigo":"20230002","nombre":"Carlos Andrés Rodríguez","programa":"Ingeniería de Sistemas"}
+{"_id":{"$oid":"651a12345678901234567893"},"codigo":"20230003","nombre":"María Fernanda Pérez","programa":"Ingeniería de Sistemas"}
+{"_id":{"$oid":"651a12345678901234567894"},"codigo":"20230004","nombre":"Javier Antonio Mendoza","programa":"Ingeniería Civil"}
+{"_id":{"$oid":"651a12345678901234567895"},"codigo":"20230005","nombre":"Laura Patricia Silva","programa":"Ingeniería Civil"}
+{"_id":{"$oid":"651a12345678901234567896"},"codigo":"20230006","nombre":"Diego Alejandro Torres","programa":"Administración"}
+{"_id":{"$oid":"651a12345678901234567897"},"codigo":"20230007","nombre":"Sofia Camila Rojas","programa":"Administración"}
+{"_id":{"$oid":"651a12345678901234567898"},"codigo":"20230008","nombre":"Miguel Ángel Castro","programa":"Medicina"}
+{"_id":{"$oid":"651a12345678901234567899"},"codigo":"20230009","nombre":"Valentina Ruiz Díaz","programa":"Medicina"}
+{"_id":{"$oid":"651a1234567890123456789a"},"codigo":"20230010","nombre":"Andrés Felipe Vargas","programa":"Derecho"}
+{"_id":{"$oid":"651a1234567890123456789b"},"codigo":"20230011","nombre":"Carolina Herrera","programa":"Derecho"}
+{"_id":{"$oid":"651a1234567890123456789c"},"codigo":"20230012","nombre":"Ricardo José Morales","programa":"Psicología"}
+{"_id":{"$oid":"651a1234567890123456789d"},"codigo":"20230013","nombre":"Daniela Alejandra Ortiz","programa":"Psicología"}
+{"_id":{"$oid":"651a1234567890123456789e"},"codigo":"20230014","nombre":"Juan Pablo Ramírez","programa":"Ingeniería Industrial"}
+{"_id":{"$oid":"651a1234567890123456789f"},"codigo":"20230015","nombre":"Paola Andrea Núñez","programa":"Ingeniería Industrial"}
+{"_id":{"$oid":"651a123456789012345678a0"},"codigo":"20230016","nombre":"Luis Fernando Gómez","programa":"Contaduría"}
+{"_id":{"$oid":"651a123456789012345678a1"},"codigo":"20230017","nombre":"Isabella Martínez","programa":"Contaduría"}
+{"_id":{"$oid":"651a123456789012345678a2"},"codigo":"20230018","nombre":"Sebastián Jiménez","programa":"Arquitectura"}
+{"_id":{"$oid":"651a123456789012345678a3"},"codigo":"20230019","nombre":"Camila Andrea Paredes","programa":"Arquitectura"}
+{"_id":{"$oid":"651a123456789012345678a4"},"codigo":"20230020","nombre":"Óscar David León","programa":"Biología"}
+{"_id":{"$oid":"651a123456789012345678a5"},"codigo":"20230021","nombre":"Natalia Sánchez","programa":"Biología"}
+{"_id":{"$oid":"651a123456789012345678a6"},"codigo":"20230022","nombre":"Héctor Manuel Ríos","programa":"Matemáticas"}
+{"_id":{"$oid":"651a123456789012345678a7"},"codigo":"20230023","nombre":"Gabriela Montes","programa":"Matemáticas"}
+{"_id":{"$oid":"651a123456789012345678a8"},"codigo":"20230024","nombre":"Fernando José Peña","programa":"Física"}
+{"_id":{"$oid":"651a123456789012345678a9"},"codigo":"20230025","nombre":"Adriana Lucía Mora","programa":"Física"}
+{"_id":{"$oid":"651a123456789012345678aa"},"codigo":"20230026","nombre":"Roberto Carlos Duarte","programa":"Química"}
+{"_id":{"$oid":"651a123456789012345678ab"},"codigo":"20230027","nombre":"Mónica Patricia Reyes","programa":"Química"}
+{"_id":{"$oid":"651a123456789012345678ac"},"codigo":"20230028","nombre":"Esteban Augusto Linares","programa":"Economía"}
+{"_id":{"$oid":"651a123456789012345678ad"},"codigo":"20230029","nombre":"Verónica Isabel Cordero","programa":"Economía"}
+{"_id":{"$oid":"651a123456789012345678ae"},"codigo":"20230030","nombre":"Raúl Eduardo Pacheco","programa":"Ingeniería Electrónica"}
