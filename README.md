@@ -3,6 +3,9 @@ Este caso de uso se centra en la creación de un sistema para gestionar la asist
 
 <b>Diseño de la base de datos</b>
 La base de datos asistencias_db se divide en tres colecciones: estudiantes, cursos y asistencias. Los registros de asistencia se relacionan con estudiantes y cursos mediante identificadores, permitiendo almacenar fechas, estados y observaciones. El modelo documental facilita manejar múltiples asistencias por estudiante sin una estructura rígida.
+<b>Tabla 1</b> 
+<br/><b>Colección: estudiantes</b>
+
 <table>
   <thead>
     <th>Campo</th>
