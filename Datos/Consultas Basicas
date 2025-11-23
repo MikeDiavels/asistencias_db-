@@ -1,0 +1,121 @@
+// Usar la base de datos
+use asistencias_db
+
+// Colección: estudiantes (30 documentos)
+db.estudiantes.insertMany([
+  { _id: ObjectId("651a12345678901234567891"), codigo: "20230001", nombre: "Ana María García López", programa: "Ingeniería de Sistemas" },
+  { _id: ObjectId("651a12345678901234567892"), codigo: "20230002", nombre: "Carlos Andrés Rodríguez", programa: "Ingeniería de Sistemas" },
+  { _id: ObjectId("651a12345678901234567893"), codigo: "20230003", nombre: "María Fernanda Pérez", programa: "Ingeniería de Sistemas" },
+  { _id: ObjectId("651a12345678901234567894"), codigo: "20230004", nombre: "Javier Antonio Mendoza", programa: "Ingeniería Civil" },
+  { _id: ObjectId("651a12345678901234567895"), codigo: "20230005", nombre: "Laura Patricia Silva", programa: "Ingeniería Civil" },
+  { _id: ObjectId("651a12345678901234567896"), codigo: "20230006", nombre: "Diego Alejandro Torres", programa: "Administración" },
+  { _id: ObjectId("651a12345678901234567897"), codigo: "20230007", nombre: "Sofia Camila Rojas", programa: "Administración" },
+  { _id: ObjectId("651a12345678901234567898"), codigo: "20230008", nombre: "Miguel Ángel Castro", programa: "Medicina" },
+  { _id: ObjectId("651a12345678901234567899"), codigo: "20230009", nombre: "Valentina Ruiz Díaz", programa: "Medicina" },
+  { _id: ObjectId("651a1234567890123456789a"), codigo: "20230010", nombre: "Andrés Felipe Vargas", programa: "Derecho" },
+  { _id: ObjectId("651a1234567890123456789b"), codigo: "20230011", nombre: "Carolina Herrera", programa: "Derecho" },
+  { _id: ObjectId("651a1234567890123456789c"), codigo: "20230012", nombre: "Ricardo José Morales", programa: "Psicología" },
+  { _id: ObjectId("651a1234567890123456789d"), codigo: "20230013", nombre: "Daniela Alejandra Ortiz", programa: "Psicología" },
+  { _id: ObjectId("651a1234567890123456789e"), codigo: "20230014", nombre: "Juan Pablo Ramírez", programa: "Ingeniería Industrial" },
+  { _id: ObjectId("651a1234567890123456789f"), codigo: "20230015", nombre: "Paola Andrea Núñez", programa: "Ingeniería Industrial" },
+  { _id: ObjectId("651a123456789012345678a0"), codigo: "20230016", nombre: "Luis Fernando Gómez", programa: "Contaduría" },
+  { _id: ObjectId("651a123456789012345678a1"), codigo: "20230017", nombre: "Isabella Martínez", programa: "Contaduría" },
+  { _id: ObjectId("651a123456789012345678a2"), codigo: "20230018", nombre: "Sebastián Jiménez", programa: "Arquitectura" },
+  { _id: ObjectId("651a123456789012345678a3"), codigo: "20230019", nombre: "Camila Andrea Paredes", programa: "Arquitectura" },
+  { _id: ObjectId("651a123456789012345678a4"), codigo: "20230020", nombre: "Óscar David León", programa: "Biología" },
+  { _id: ObjectId("651a123456789012345678a5"), codigo: "20230021", nombre: "Natalia Sánchez", programa: "Biología" },
+  { _id: ObjectId("651a123456789012345678a6"), codigo: "20230022", nombre: "Héctor Manuel Ríos", programa: "Matemáticas" },
+  { _id: ObjectId("651a123456789012345678a7"), codigo: "20230023", nombre: "Gabriela Montes", programa: "Matemáticas" },
+  { _id: ObjectId("651a123456789012345678a8"), codigo: "20230024", nombre: "Fernando José Peña", programa: "Física" },
+  { _id: ObjectId("651a123456789012345678a9"), codigo: "20230025", nombre: "Adriana Lucía Mora", programa: "Física" },
+  { _id: ObjectId("651a123456789012345678aa"), codigo: "20230026", nombre: "Roberto Carlos Duarte", programa: "Química" },
+  { _id: ObjectId("651a123456789012345678ab"), codigo: "20230027", nombre: "Mónica Patricia Reyes", programa: "Química" },
+  { _id: ObjectId("651a123456789012345678ac"), codigo: "20230028", nombre: "Esteban Augusto Linares", programa: "Economía" },
+  { _id: ObjectId("651a123456789012345678ad"), codigo: "20230029", nombre: "Verónica Isabel Cordero", programa: "Economía" },
+  { _id: ObjectId("651a123456789012345678ae"), codigo: "20230030", nombre: "Raúl Eduardo Pacheco", programa: "Ingeniería Electrónica" }
+])
+
+// Colección: cursos (15 documentos)
+db.cursos.insertMany([
+  { _id: ObjectId("651b12345678901234567891"), codigo: "MAT101", nombre: "Cálculo I", docente: "Dr. Roberto Álvarez" },
+  { _id: ObjectId("651b12345678901234567892"), codigo: "MAT102", nombre: "Cálculo II", docente: "Dra. Carmen Sarmiento" },
+  { _id: ObjectId("651b12345678901234567893"), codigo: "FIS101", nombre: "Física General", docente: "Dr. Luis Méndez" },
+  { _id: ObjectId("651b12345678901234567894"), codigo: "FIS102", nombre: "Física Avanzada", docente: "Dra. Patricia Rojas" },
+  { _id: ObjectId("651b12345678901234567895"), codigo: "QUI101", nombre: "Química General", docente: "Dr. Jorge Silva" },
+  { _id: ObjectId("651b12345678901234567896"), codigo: "ING101", nombre: "Inglés I", docente: "Prof. Laura Thompson" },
+  { _id: ObjectId("651b12345678901234567897"), codigo: "ING102", nombre: "Inglés II", docente: "Prof. Michael Brown" },
+  { _id: ObjectId("651b12345678901234567898"), codigo: "PRO101", nombre: "Programación I", docente: "Ing. Carlos Fuentes" },
+  { _id: ObjectId("651b12345678901234567899"), codigo: "PRO102", nombre: "Programación II", docente: "Ing. Ana Martínez" },
+  { _id: ObjectId("651b1234567890123456789a"), codigo: "BDD101", nombre: "Bases de Datos", docente: "Mg. Ricardo Ortega" },
+  { _id: ObjectId("651b1234567890123456789b"), codigo: "RED101", nombre: "Redes de Computadores", docente: "Dr. Fernando Castro" },
+  { _id: ObjectId("651b1234567890123456789c"), codigo: "ETI101", nombre: "Ética Profesional", docente: "Dra. Marta Villanueva" },
+  { _id: ObjectId("651b1234567890123456789d"), codigo: "ADM101", nombre: "Administración", docente: "Mg. Pedro Navarro" },
+  { _id: ObjectId("651b1234567890123456789e"), codigo: "ECO101", nombre: "Economía", docente: "Dr. Sergio Ramírez" },
+  { _id: ObjectId("651b1234567890123456789f"), codigo: "DER101", nombre: "Derecho Constitucional", docente: "Dra. Isabel Mendoza" }
+])
+
+// Colección: asistencias (60 documentos - 2 asistencias por estudiante en diferentes cursos)
+db.asistencias.insertMany([
+  // Asistencias para la primera semana de marzo
+  { _id: ObjectId("651c12345678901234567891"), estudiante_id: ObjectId("651a12345678901234567891"), curso_id: ObjectId("651b12345678901234567891"), fecha: ISODate("2024-03-01"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c12345678901234567892"), estudiante_id: ObjectId("651a12345678901234567891"), curso_id: ObjectId("651b12345678901234567898"), fecha: ISODate("2024-03-02"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c12345678901234567893"), estudiante_id: ObjectId("651a12345678901234567892"), curso_id: ObjectId("651b12345678901234567891"), fecha: ISODate("2024-03-01"), estado: "Tarde", observacion: "Llegó 15 minutos tarde" },
+  { _id: ObjectId("651c12345678901234567894"), estudiante_id: ObjectId("651a12345678901234567892"), curso_id: ObjectId("651b12345678901234567899"), fecha: ISODate("2024-03-03"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c12345678901234567895"), estudiante_id: ObjectId("651a12345678901234567893"), curso_id: ObjectId("651b12345678901234567892"), fecha: ISODate("2024-03-01"), estado: "Ausente", observacion: "Justificado - Enfermedad" },
+  { _id: ObjectId("651c12345678901234567896"), estudiante_id: ObjectId("651a12345678901234567893"), curso_id: ObjectId("651b1234567890123456789a"), fecha: ISODate("2024-03-04"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c12345678901234567897"), estudiante_id: ObjectId("651a12345678901234567894"), curso_id: ObjectId("651b12345678901234567893"), fecha: ISODate("2024-03-02"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c12345678901234567898"), estudiante_id: ObjectId("651a12345678901234567894"), curso_id: ObjectId("651b1234567890123456789b"), fecha: ISODate("2024-03-05"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c12345678901234567899"), estudiante_id: ObjectId("651a12345678901234567895"), curso_id: ObjectId("651b12345678901234567894"), fecha: ISODate("2024-03-03"), estado: "Tarde", observacion: "Problemas de transporte" },
+  { _id: ObjectId("651c1234567890123456789a"), estudiante_id: ObjectId("651a12345678901234567895"), curso_id: ObjectId("651b1234567890123456789c"), fecha: ISODate("2024-03-06"), estado: "Presente", observacion: "" },
+  
+  // Continuación con más estudiantes...
+  { _id: ObjectId("651c1234567890123456789b"), estudiante_id: ObjectId("651a12345678901234567896"), curso_id: ObjectId("651b12345678901234567895"), fecha: ISODate("2024-03-04"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c1234567890123456789c"), estudiante_id: ObjectId("651a12345678901234567896"), curso_id: ObjectId("651b1234567890123456789d"), fecha: ISODate("2024-03-07"), estado: "Ausente", observacion: "" },
+  { _id: ObjectId("651c1234567890123456789d"), estudiante_id: ObjectId("651a12345678901234567897"), curso_id: ObjectId("651b12345678901234567896"), fecha: ISODate("2024-03-05"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c1234567890123456789e"), estudiante_id: ObjectId("651a12345678901234567897"), curso_id: ObjectId("651b1234567890123456789e"), fecha: ISODate("2024-03-08"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c1234567890123456789f"), estudiante_id: ObjectId("651a12345678901234567898"), curso_id: ObjectId("651b12345678901234567897"), fecha: ISODate("2024-03-06"), estado: "Tarde", observacion: "Llegó 10 minutos tarde" },
+  { _id: ObjectId("651c123456789012345678a0"), estudiante_id: ObjectId("651a12345678901234567898"), curso_id: ObjectId("651b1234567890123456789f"), fecha: ISODate("2024-03-09"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678a1"), estudiante_id: ObjectId("651a12345678901234567899"), curso_id: ObjectId("651b12345678901234567898"), fecha: ISODate("2024-03-07"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678a2"), estudiante_id: ObjectId("651a12345678901234567899"), curso_id: ObjectId("651b12345678901234567891"), fecha: ISODate("2024-03-10"), estado: "Ausente", observacion: "Sin justificación" },
+  { _id: ObjectId("651c123456789012345678a3"), estudiante_id: ObjectId("651a1234567890123456789a"), curso_id: ObjectId("651b12345678901234567899"), fecha: ISODate("2024-03-08"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678a4"), estudiante_id: ObjectId("651a1234567890123456789a"), curso_id: ObjectId("651b12345678901234567892"), fecha: ISODate("2024-03-11"), estado: "Presente", observacion: "" },
+  
+  // Segunda semana de marzo
+  { _id: ObjectId("651c123456789012345678a5"), estudiante_id: ObjectId("651a12345678901234567891"), curso_id: ObjectId("651b12345678901234567893"), fecha: ISODate("2024-03-15"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678a6"), estudiante_id: ObjectId("651a12345678901234567892"), curso_id: ObjectId("651b12345678901234567894"), fecha: ISODate("2024-03-16"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678a7"), estudiante_id: ObjectId("651a12345678901234567893"), curso_id: ObjectId("651b12345678901234567895"), fecha: ISODate("2024-03-15"), estado: "Tarde", observacion: "Llegó 5 minutos tarde" },
+  { _id: ObjectId("651c123456789012345678a8"), estudiante_id: ObjectId("651a12345678901234567894"), curso_id: ObjectId("651b12345678901234567896"), fecha: ISODate("2024-03-17"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678a9"), estudiante_id: ObjectId("651a12345678901234567895"), curso_id: ObjectId("651b12345678901234567897"), fecha: ISODate("2024-03-16"), estado: "Ausente", observacion: "Justificado - Médico" },
+  { _id: ObjectId("651c123456789012345678aa"), estudiante_id: ObjectId("651a12345678901234567896"), curso_id: ObjectId("651b12345678901234567898"), fecha: ISODate("2024-03-18"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678ab"), estudiante_id: ObjectId("651a12345678901234567897"), curso_id: ObjectId("651b12345678901234567899"), fecha: ISODate("2024-03-17"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678ac"), estudiante_id: ObjectId("651a12345678901234567898"), curso_id: ObjectId("651b1234567890123456789a"), fecha: ISODate("2024-03-19"), estado: "Tarde", observacion: "Tráfico pesado" },
+  { _id: ObjectId("651c123456789012345678ad"), estudiante_id: ObjectId("651a12345678901234567899"), curso_id: ObjectId("651b1234567890123456789b"), fecha: ISODate("2024-03-18"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678ae"), estudiante_id: ObjectId("651a1234567890123456789a"), curso_id: ObjectId("651b1234567890123456789c"), fecha: ISODate("2024-03-20"), estado: "Presente", observacion: "" },
+  
+  // Continuar con más asistencias para completar 60...
+  { _id: ObjectId("651c123456789012345678af"), estudiante_id: ObjectId("651a1234567890123456789b"), curso_id: ObjectId("651b1234567890123456789d"), fecha: ISODate("2024-03-15"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b0"), estudiante_id: ObjectId("651a1234567890123456789b"), curso_id: ObjectId("651b1234567890123456789e"), fecha: ISODate("2024-03-21"), estado: "Ausente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b1"), estudiante_id: ObjectId("651a1234567890123456789c"), curso_id: ObjectId("651b1234567890123456789f"), fecha: ISODate("2024-03-16"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b2"), estudiante_id: ObjectId("651a1234567890123456789c"), curso_id: ObjectId("651b12345678901234567891"), fecha: ISODate("2024-03-22"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b3"), estudiante_id: ObjectId("651a1234567890123456789d"), curso_id: ObjectId("651b12345678901234567892"), fecha: ISODate("2024-03-17"), estado: "Tarde", observacion: "Problemas familiares" },
+  { _id: ObjectId("651c123456789012345678b4"), estudiante_id: ObjectId("651a1234567890123456789d"), curso_id: ObjectId("651b12345678901234567893"), fecha: ISODate("2024-03-23"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b5"), estudiante_id: ObjectId("651a1234567890123456789e"), curso_id: ObjectId("651b12345678901234567894"), fecha: ISODate("2024-03-18"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b6"), estudiante_id: ObjectId("651a1234567890123456789e"), curso_id: ObjectId("651b12345678901234567895"), fecha: ISODate("2024-03-24"), estado: "Ausente", observacion: "Viaje familiar" },
+  { _id: ObjectId("651c123456789012345678b7"), estudiante_id: ObjectId("651a1234567890123456789f"), curso_id: ObjectId("651b12345678901234567896"), fecha: ISODate("2024-03-19"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678b8"), estudiante_id: ObjectId("651a1234567890123456789f"), curso_id: ObjectId("651b12345678901234567897"), fecha: ISODate("2024-03-25"), estado: "Presente", observacion: "" },
+  
+  // Últimas asistencias...
+  { _id: ObjectId("651c123456789012345678b9"), estudiante_id: ObjectId("651a123456789012345678a0"), curso_id: ObjectId("651b12345678901234567898"), fecha: ISODate("2024-03-20"), estado: "Tarde", observacion: "Despertador no sonó" },
+  { _id: ObjectId("651c123456789012345678ba"), estudiante_id: ObjectId("651a123456789012345678a0"), curso_id: ObjectId("651b12345678901234567899"), fecha: ISODate("2024-03-26"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678bb"), estudiante_id: ObjectId("651a123456789012345678a1"), curso_id: ObjectId("651b1234567890123456789a"), fecha: ISODate("2024-03-21"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678bc"), estudiante_id: ObjectId("651a123456789012345678a1"), curso_id: ObjectId("651b1234567890123456789b"), fecha: ISODate("2024-03-27"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678bd"), estudiante_id: ObjectId("651a123456789012345678a2"), curso_id: ObjectId("651b1234567890123456789c"), fecha: ISODate("2024-03-22"), estado: "Ausente", observacion: "Sin comunicación" },
+  { _id: ObjectId("651c123456789012345678be"), estudiante_id: ObjectId("651a123456789012345678a2"), curso_id: ObjectId("651b1234567890123456789d"), fecha: ISODate("2024-03-28"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678bf"), estudiante_id: ObjectId("651a123456789012345678a3"), curso_id: ObjectId("651b1234567890123456789e"), fecha: ISODate("2024-03-23"), estado: "Presente", observacion: "" },
+  { _id: ObjectId("651c123456789012345678c0"), estudiante_id: ObjectId("651a123456789012345678a3"), curso_id: ObjectId("651b1234567890123456789f"), fecha: ISODate("2024-03-29"), estado: "Tarde", observacion: "Llegó 8 minutos tarde" }
+])
+
+// Verificar conteos
+print("Total estudiantes: " + db.estudiantes.countDocuments())
+print("Total cursos: " + db.cursos.countDocuments())
+print("Total asistencias: " + db.asistencias.countDocuments())
