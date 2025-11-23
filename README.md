@@ -1,3 +1,10 @@
+<div style="color:green"><b>Universidad Nacional Abierta y a Distancia UNAD</b><br/>
+<b>Ingenieria de sistemas</b><br/>
+<b>Curso Bigdata: 202016911A_2034</b><br/>
+<b>Curso # 2</b><br/>
+<b>Estudiante: Marcial Alberto Diaz Velaides</b><br/>
+<b>Tutor: Jaime Rubiano LLorente</b><br/>
+</div>
 <b>Sistema de registro de asistencia estudiantil</b><br/>
 Este caso de uso se centra en la creación de un sistema para gestionar la asistencia de estudiantes en una institución educativa. El sistema debe permitir registrar la presencia, ausencia o tardanza de cada estudiante en distintos cursos y fechas. MongoDB es adecuado porque permite almacenar registros con diferentes cantidades de asistencias por estudiante, añadir observaciones opcionales, y manejar información variable sin requerir la rigidez de una base de datos relacional. El objetivo es facilitar consultas como asistencia por curso, porcentajes de asistencia, historial por estudiante y reportes para seguimiento académico.
 
@@ -755,10 +762,5 @@ db.estudiantes.aggregate([
 ])
 <br/>
 
-<b>Universidad Nacional Abierta y a Distancia UNAD</b><br/>
-<b>Ingenieria de sistemas</b><br/>
-<b>Curso Bigdata: 202016911A_2034</b><br/>
-<b>Curso # 2</b><br/>
-<b>Estudiante: Marcial Alberto Diaz Velaides</b><br/>
-<b>Tutor: Jaime Rubiano LLorente</b><br/>
+
 <b>2025</b>
