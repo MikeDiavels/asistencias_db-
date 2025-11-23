@@ -35,3 +35,79 @@ La base de datos asistencias_db se divide en tres colecciones: estudiantes, curs
     </tr>
   </tbody>
 </table>
+
+<br/><b>Tabla 2</b> 
+<br/><b>Colección: cursos</b>
+
+<table>
+  <thead>
+    <th>Campo</th>
+     <th>Tipo</th>
+     <th>Descripción</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>_id</td>
+       <td>ObjectId</td>
+       <td>Identificador único</td>
+    </tr>
+     <tr>
+      <td>estudiante_id</td>
+       <td>ObjectId</td>
+       <td>Referencia al estudiante</td>
+    </tr>
+     <tr>
+      <td>curso_id</td>
+       <td>ObjectId</td>
+       <td>Referencia al curso</td>
+    </tr>
+     <tr>
+      <td>fecha</td>
+       <td>date</td>
+       <td>Fecha del registro</td>
+    </tr>
+      <tr>
+      <td>estado</td>
+       <td>string</td>
+       <td>Presente / Ausente / Tarde</td>
+    </tr>
+     <tr>
+      <td>observacion</td>
+       <td>string</td>
+       <td>Comentario opcional</td>
+    </tr>
+  </tbody>
+</table>
+
+<br/><b>Tabla 3</b> 
+<br/><b>Colección: asistencias</b>
+
+<table>
+  <thead>
+    <th>Campo</th>
+     <th>Tipo</th>
+     <th>Descripción</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>_id</td>
+       <td>ObjectId</td>
+       <td>Identificador único</td>
+    </tr>
+     <tr>
+      <td>codigo</td>
+       <td>string</td>
+       <td>Código institucional del estudiante</td>
+    </tr>
+     <tr>
+      <td>nombre</td>
+       <td>string</td>
+       <td>Nombre completo</td>
+    </tr>
+     <tr>
+      <td>programa</td>
+       <td>string</td>
+       <td>Programa académico</td>
+    </tr>
+  </tbody>
+</table>
