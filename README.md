@@ -130,6 +130,7 @@ use asistencias_db<br/>
 
 // Colección: estudiantes (30 documentos)<br/>
 db.estudiantes.insertMany([
+
   { _id: ObjectId("651a12345678901234567891"), codigo: "20230001", nombre: "Ana María García López", programa: "Ingeniería de Sistemas" },
   { _id: ObjectId("651a12345678901234567892"), codigo: "20230002", nombre: "Carlos Andrés Rodríguez", programa: "Ingeniería de Sistemas" },
   { _id: ObjectId("651a12345678901234567893"), codigo: "20230003", nombre: "María Fernanda Pérez", programa: "Ingeniería de Sistemas" },
@@ -164,6 +165,7 @@ db.estudiantes.insertMany([
 <br/>
 // Colección: cursos (15 documentos)<br/>
 db.cursos.insertMany([
+
   { _id: ObjectId("651b12345678901234567891"), codigo: "MAT101", nombre: "Cálculo I", docente: "Dr. Roberto Álvarez" },
   { _id: ObjectId("651b12345678901234567892"), codigo: "MAT102", nombre: "Cálculo II", docente: "Dra. Carmen Sarmiento" },
   { _id: ObjectId("651b12345678901234567893"), codigo: "FIS101", nombre: "Física General", docente: "Dr. Luis Méndez" },
@@ -257,6 +259,7 @@ Consultas con filtros y operadores.
 Consulta 1: Lista estudiantes complicados.
 <br/>
 db.asistencias.aggregate([
+
   {
     $match: { estado: "Ausente" }
   },
@@ -537,7 +540,7 @@ db.asistencias.aggregate([
   {
     $facet: {
       "mejor_asistencia": [
-        { $sort: { porcentaje_asistencia: -1 } },
+      { $sort: { porcentaje_asistencia: -1 } },
         { $limit: 5 },
         {
           $project: {
