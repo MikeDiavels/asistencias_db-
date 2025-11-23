@@ -1,0 +1,332 @@
+Consulta 1: Evolución mensual de asistencia<br/>
+
+db.asistencias.aggregate([
+  {
+    $addFields: {
+      mes: { $month: "$fecha" },
+      año: { $year: "$fecha" }
+    }
+  },
+  {
+    $group: {
+      _id: { mes: "$mes", año: "$año" },
+      total_registros: { $sum: 1 },
+      total_presentes: { $sum: { $cond: [{ $eq: ["$estado", "Presente"] }, 1, 0] } },
+      total_tardes: { $sum: { $cond: [{ $eq: ["$estado", "Tarde"] }, 1, 0] } },
+      total_ausentes: { $sum: { $cond: [{ $eq: ["$estado", "Ausente"] }, 1, 0] } },
+      estudiantes_unicos: { $addToSet: "$estudiante_id" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      periodo: { $concat: [{ $toString: "$_id.mes" }, "-", { $toString: "$_id.año" }] },
+      total_registros: 1,
+      total_presentes: 1,
+      total_tardes: 1,
+      total_ausentes: 1,
+      total_estudiantes: { $size: "$estudiantes_unicos" },
+      porcentaje_asistencia: {
+        $round: [
+          {
+            $multiply: [
+              {
+                $divide: [
+                  { $add: ["$total_presentes", { $multiply: ["$total_tardes", 0.8] }] },
+                  "$total_registros"
+                ]
+              },
+              100
+            ]
+          },
+          2
+        ]
+      },
+      promedio_asistencias_por_estudiante: {
+        $round: [
+          { $divide: ["$total_registros", { $size: "$estudiantes_unicos" }] },
+          2
+        ]
+      }
+    }
+  },
+  {
+    $sort: { periodo: 1 }
+  }
+])
+Interpretación: Podemos calcular el total de registro, total presentes, total estudiantes que llegaron tarde, cuantos no asistieron, en qué periodo, y el promedio de estudiantes que asistieron, buena información para tomar decisiones.
+<br/>
+Consulta 2: Ranking de estudiantes (mejores y peores)
+<br/>
+db.asistencias.aggregate([
+  {
+    $group: {
+      _id: "$estudiante_id",
+      total_asistencias: { $sum: 1 },
+      presentes: { $sum: { $cond: [{ $eq: ["$estado", "Presente"] }, 1, 0] } },
+      tardes: { $sum: { $cond: [{ $eq: ["$estado", "Tarde"] }, 1, 0] } },
+      ausentes: { $sum: { $cond: [{ $eq: ["$estado", "Ausente"] }, 1, 0] } }
+    }
+  },
+  {
+    $match: {
+      total_asistencias: { $gte: 5 }
+    }
+  },
+  {
+    $addFields: {
+      porcentaje_asistencia: {
+        $round: [
+          {
+            $multiply: [
+              {
+                $divide: [
+                  { $add: ["$presentes", { $multiply: ["$tardes", 0.8] }] },
+                  "$total_asistencias"
+                ]
+              },
+              100
+            ]
+          },
+          2
+        ]
+      }
+    }
+  },
+  {
+    $lookup: {
+      from: "estudiantes",
+      localField: "_id",
+      foreignField: "_id",
+      as: "estudiante_info"
+    }
+  },
+  {
+    $unwind: "$estudiante_info"
+  },
+  {
+    $facet: {
+      "mejor_asistencia": [
+        { $sort: { porcentaje_asistencia: -1 } },
+        { $limit: 5 },
+        {
+          $project: {
+            _id: 0,
+            estudiante: "$estudiante_info.nombre",
+            codigo: "$estudiante_info.codigo",
+            programa: "$estudiante_info.programa",
+            total_asistencias: 1,
+            presentes: 1,
+            tardes: 1,
+            ausentes: 1,
+            porcentaje_asistencia: 1
+          }
+        }
+      ],
+      "peor_asistencia": [
+        { $sort: { porcentaje_asistencia: 1 } },
+        { $limit: 5 },
+        {
+          $project: {
+            _id: 0,
+            estudiante: "$estudiante_info.nombre",
+            codigo: "$estudiante_info.codigo",
+            programa: "$estudiante_info.programa",
+            total_asistencias: 1,
+            presentes: 1,
+            tardes: 1,
+            ausentes: 1,
+            porcentaje_asistencia: 1
+          }
+        }
+      ]
+    }
+  }
+])
+Interpretación: En esta consulta podemos ver el ranking de estudiantes (mejores y peores), en la base datos, importante esta estadística para tomar decisiones, a la hora de reevaluar la educación en un colegio, escuela, o universidad, ya que podremos ver el total de mejor asistencia y peor asistencia.
+<br/>
+Consulta 3: Comportamiento por días de la semana
+<br/>
+db.asistencias.aggregate([
+  {
+    $addFields: {
+      dia_semana: { $dayOfWeek: "$fecha" },
+      nombre_dia: {
+        $switch: {
+          branches: [
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 1] }, then: "Domingo" },
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 2] }, then: "Lunes" },
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 3] }, then: "Martes" },
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 4] }, then: "Miércoles" },
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 5] }, then: "Jueves" },
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 6] }, then: "Viernes" },
+            { case: { $eq: [{ $dayOfWeek: "$fecha" }, 7] }, then: "Sábado" }
+          ],
+          default: "Desconocido"
+        }
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$nombre_dia",
+      dia_numero: { $first: "$dia_semana" },
+      total_registros: { $sum: 1 },
+      presentes: { $sum: { $cond: [{ $eq: ["$estado", "Presente"] }, 1, 0] } },
+      tardes: { $sum: { $cond: [{ $eq: ["$estado", "Tarde"] }, 1, 0] } },
+      ausentes: { $sum: { $cond: [{ $eq: ["$estado", "Ausente"] }, 1, 0] } },
+      cursos_unicos: { $addToSet: "$curso_id" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      dia: "$_id",
+      dia_numero: 1,
+      total_registros: 1,
+      total_cursos: { $size: "$cursos_unicos" },
+      porcentaje_asistencia: {
+        $round: [
+          {
+            $multiply: [
+              {
+                $divide: [
+                  { $add: ["$presentes", { $multiply: ["$tardes", 0.8] }] },
+                  "$total_registros"
+                ]
+              },
+              100
+            ]
+          },
+          2
+        ]
+      },
+      indice_tardanzas: {
+        $round: [
+          {
+            $multiply: [
+              { $divide: ["$tardes", "$total_registros"] },
+              100
+            ]
+          },
+          2
+        ]
+      },
+      indice_ausentismo: {
+        $round: [
+          {
+            $multiply: [
+              { $divide: ["$ausentes", "$total_registros"] },
+              100
+            ]
+          },
+          2
+        ]
+      }
+    }
+  },
+  {
+    $sort: { dia_numero: 1 }
+  }
+])
+<br/>
+Interpretación: Consulta de estudiantes y el comportamiento por días de la semana 
+<br/>
+Consulta 4: Comparativa entre programas con calificaciones, podemos ver el número del día, el día en letras, total registros, total cursos, porcentajes de asistencias, índice de tardanzas, índice de ausentismo.
+<br/>
+db.estudiantes.aggregate([
+  {
+    $lookup: {
+      from: "asistencias",
+      localField: "_id",
+      foreignField: "estudiante_id",
+      as: "asistencias"
+    }
+  },
+  {
+    $unwind: "$asistencias"
+  },
+  {
+    $group: {
+      _id: "$programa",
+      total_estudiantes: { $addToSet: "$_id" },
+      total_registros: { $sum: 1 },
+      total_presentes: { $sum: { $cond: [{ $eq: ["$asistencias.estado", "Presente"] }, 1, 0] } },
+      total_tardes: { $sum: { $cond: [{ $eq: ["$asistencias.estado", "Tarde"] }, 1, 0] } },
+      total_ausentes: { $sum: { $cond: [{ $eq: ["$asistencias.estado", "Ausente"] }, 1, 0] } },
+      cursos_unicos: { $addToSet: "$asistencias.curso_id" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      programa: "$_id",
+      total_estudiantes: { $size: "$total_estudiantes" },
+      total_registros: 1,
+      total_cursos: { $size: "$cursos_unicos" },
+      metricas: {
+        porcentaje_asistencia: {
+          $round: [
+            {
+              $multiply: [
+                {
+                  $divide: [
+                    { $add: ["$total_presentes", { $multiply: ["$total_tardes", 0.8] }] },
+                    "$total_registros"
+                  ]
+                },
+                100
+              ]
+            },
+            2
+          ]
+        },
+        porcentaje_tardanzas: {
+          $round: [
+            { $multiply: [{ $divide: ["$total_tardes", "$total_registros"] }, 100] },
+            2
+          ]
+        },
+        porcentaje_ausentismo: {
+          $round: [
+            { $multiply: [{ $divide: ["$total_ausentes", "$total_registros"] }, 100] },
+            2
+          ]
+        },
+        promedio_asistencias_por_estudiante: {
+          $round: [
+            { $divide: ["$total_registros", { $size: "$total_estudiantes" }] },
+            2
+          ]
+        }
+      },
+      ranking: {
+        $switch: {
+          branches: [
+            {
+              case: { $gte: [{ $multiply: [{ $divide: [{ $add: ["$total_presentes", { $multiply: ["$total_tardes", 0.8] }] }, "$total_registros"] }, 100] }, 90] },
+              then: "Excelente"
+            },
+            {
+              case: { $gte: [{ $multiply: [{ $divide: [{ $add: ["$total_presentes", { $multiply: ["$total_tardes", 0.8] }] }, "$total_registros"] }, 100] }, 80] },
+              then: "Bueno"
+            },
+            {
+              case: { $gte: [{ $multiply: [{ $divide: [{ $add: ["$total_presentes", { $multiply: ["$total_tardes", 0.8] }] }, "$total_registros"] }, 100] }, 70] },
+              then: "Regular"
+            },
+            {
+              case: { $gte: [{ $multiply: [{ $divide: [{ $add: ["$total_presentes", { $multiply: ["$total_tardes", 0.8] }] }, "$total_registros"] }, 100] }, 60] },
+              then: "Deficiente"
+            }
+          ],
+          default: "Crítico"
+        }
+      }
+    }
+  },
+  {
+    $sort: { "metricas.porcentaje_asistencia": -1 }
+  }
+])<br/>
+Interpretación: Consulta de comparativa entre programas con calificaciones los cuales podemos ver el programa, total estudiantes, total de cursos tomados, y sus métricas, porcentaje de asistencia, porcentaje de tardanza, porcentaje de ausentismos, promedio de asistencia por estudiantes
