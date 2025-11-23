@@ -754,8 +754,6 @@ db.estudiantes.aggregate([
   }
 ])
 <br/>
-<br/>
-<br/>
 
 <b>Universidad Nacional Abierta y a Distancia UNAD</b><br/>
 <b>Ingenieria de sistamas</b><br/>
