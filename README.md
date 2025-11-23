@@ -3,6 +3,9 @@ Este caso de uso se centra en la creación de un sistema para gestionar la asist
 
 <b>Diseño de la base de datos</b><br/>
 La base de datos asistencias_db se divide en tres colecciones: estudiantes, cursos y asistencias. Los registros de asistencia se relacionan con estudiantes y cursos mediante identificadores, permitiendo almacenar fechas, estados y observaciones. El modelo documental facilita manejar múltiples asistencias por estudiante sin una estructura rígida.
+<br/>
+<b>Los datos a continuacion son datos dummy, generador para simular la base de datos en MONGODB</b>
+
 <br/><b>Tabla 1</b> 
 <br/><b>Colección: estudiantes</b>
 
@@ -85,19 +88,29 @@ La base de datos asistencias_db se divide en tres colecciones: estudiantes, curs
        <td>Identificador único</td>
     </tr>
      <tr>
-      <td>codigo</td>
-       <td>string</td>
-       <td>Código institucional del estudiante</td>
+      <td>estudiante_id</td>
+       <td>ObjectId</td>
+       <td>Referencia al estudiante</td>
     </tr>
      <tr>
-      <td>nombre</td>
-       <td>string</td>
-       <td>Nombre completo</td>
+      <td>curso_id</td>
+       <td>ObjectId</td>
+       <td>Referencia al estudiante</td>
     </tr>
      <tr>
-      <td>programa</td>
+      <td>fecha</td>
+       <td>date</td>
+       <td>Fecha del registro</td>
+    </tr>
+     <tr>
+      <td>estado</td>
        <td>string</td>
-       <td>Programa académico</td>
+       <td>Presente / Ausente / Tarde</td>
+    </tr>
+    <tr>
+      <td>observacion</td>
+       <td>string</td>
+       <td>Comentario opcional</td>
     </tr>
   </tbody>
 </table>
