@@ -1,0 +1,170 @@
+Consultas con filtros y operadores.<br/>
+Consulta 1: Lista estudiantes complicados.<br/>
+
+db.asistencias.aggregate([
+  {
+    $match: { estado: "Ausente" }
+  },
+  {
+    $group: {
+      _id: "$estudiante_id",
+      totalAusencias: { $sum: 1 }
+    }
+  },
+  {
+    $match: { totalAusencias: { $gt: 2 } }
+  },
+  {
+    $lookup: {
+      from: "estudiantes",
+      localField: "_id",
+      foreignField: "_id",
+      as: "estudiante"
+    }
+  },
+  {
+    $unwind: "$estudiante"
+  },
+  {
+    $project: {
+      "nombre": "$estudiante.nombre",
+      "codigo": "$estudiante.codigo", 
+      "programa": "$estudiante.programa",
+      "total_ausencias": "$totalAusencias"
+    }
+  }
+])
+<br/>
+Interpretación: La consulta realizada podemos ver el porcentaje de asistencia, cuantos registros tiene, cuantas clases asistió, quien es el docente a cargo, porque usamos esta consulta, pues porque necesitamos saber cuáles son esos estudiantes a los cuales debemos prestarles atención y especial cuidado a la hora de quizás calcular promedios, y así saber cuál es la predicción quizás del semestre o periodo.
+<br/>
+
+Consulta 2: Ranking de cursos por asistencia<br/>
+
+db.asistencias.aggregate([
+  {
+    $group: {
+      _id: "$curso_id",
+      total: { $sum: 1 },
+      presentes: { $sum: { $cond: [{ $eq: ["$estado", "Presente"] }, 1, 0] } },
+      tardes: { $sum: { $cond: [{ $eq: ["$estado", "Tarde"] }, 1, 0] } },
+      ausentes: { $sum: { $cond: [{ $eq: ["$estado", "Ausente"] }, 1, 0] } }
+    }
+  },
+  {
+    $lookup: {
+      from: "cursos",
+      localField: "_id",
+      foreignField: "_id",
+      as: "curso"
+    }
+  },
+  {
+    $unwind: "$curso"
+  },
+  {
+    $project: {
+      "curso": "$curso.nombre",
+      "docente": "$curso.docente",
+      "total_registros": "$total",
+      "presentes": "$presentes",
+      "tardes": "$tardes", 
+      "ausentes": "$ausentes",
+      "porcentaje_asistencia": {
+        $round: [
+          {
+            $multiply: [
+              {
+                $divide: [
+                  { $add: ["$presentes", "$tardes"] },
+                  "$total"
+                ]
+              },
+              100
+            ]
+          },
+          2
+        ]
+      }
+    }
+  },
+  {
+    $sort: { porcentaje_asistencia: -1 }
+  }
+])<br/>
+Interpretación: En esta consulta ejecutamos un filtro para saber el raking de cursos por asistencia, así tenemos claro cuáles son esos cursos que más persona tenemos y que más personas asisten, incluso podríamos sacar información de cuál es el docente que más cursos tienen y que estudiantes asisten.
+<br/>
+
+Consulta 3: Incidencias específicas con justificación
+<br/>
+db.asistencias.find({
+  $and: [
+    { 
+      fecha: { 
+        $gte: ISODate("2024-03-15"), 
+        $lte: ISODate("2024-03-21") 
+      } 
+    },
+    { 
+      estado: { $in: ["Tarde", "Ausente"] } 
+    },
+    { 
+      observacion: { $ne: "" } 
+    }
+  ]
+})
+<br/>
+
+Interpretación: Con esta consulta buscamos consultar la cantidad de estudiantes y observaciones que se usaron a la hora de faltar a clase, si no tiene observaciones no las muestras.
+<br/>
+Consulta 4: Comparativa entre programas académicos
+<br/>
+db.estudiantes.aggregate([
+  {
+    $lookup: {
+      from: "asistencias",
+      localField: "_id",
+      foreignField: "estudiante_id",
+      as: "asistencias"
+    }
+  },
+  {
+    $unwind: "$asistencias"
+  },
+  {
+    $group: {
+      _id: "$programa",
+      total_estudiantes: { $addToSet: "$_id" },
+      total_registros: { $sum: 1 },
+      presentes: { $sum: { $cond: [{ $eq: ["$asistencias.estado", "Presente"] }, 1, 0] } },
+      tardes: { $sum: { $cond: [{ $eq: ["$asistencias.estado", "Tarde"] }, 1, 0] } }
+    }
+  },
+  {
+    $project: {
+      "programa": "$_id",
+      "total_estudiantes": { $size: "$total_estudiantes" },
+      "total_registros": "$total_registros",
+      "porcentaje_asistencia": {
+        $round: [
+          {
+            $multiply: [
+              {
+                $divide: [
+                  { $add: ["$presentes", "$tardes"] },
+                  "$total_registros"
+                ]
+              },
+              100
+            ]
+          },
+          2
+        ]
+      }
+    }
+  },
+  {
+    $sort: { porcentaje_asistencia: -1 }
+  }
+])
+<br/>
+Interpretación: Con esta consulta buscamos saber cuáles son las materias más tomadas el porcentaje de asistencia, el total de registro, y cuantos estudiantes estuvieron en dicha clase.
