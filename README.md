@@ -52,29 +52,19 @@ La base de datos asistencias_db se divide en tres colecciones: estudiantes, curs
        <td>Identificador único</td>
     </tr>
      <tr>
-      <td>estudiante_id</td>
-       <td>ObjectId</td>
-       <td>Referencia al estudiante</td>
-    </tr>
-     <tr>
-      <td>curso_id</td>
-       <td>ObjectId</td>
-       <td>Referencia al curso</td>
-    </tr>
-     <tr>
-      <td>fecha</td>
-       <td>date</td>
-       <td>Fecha del registro</td>
-    </tr>
-      <tr>
-      <td>estado</td>
+      <td>codigo</td>
        <td>string</td>
-       <td>Presente / Ausente / Tarde</td>
+       <td>Código del curso</td>
     </tr>
      <tr>
-      <td>observacion</td>
+      <td>nombre</td>
        <td>string</td>
-       <td>Comentario opcional</td>
+       <td>Nombre de la asignatura</td>
+    </tr>
+     <tr>
+      <td>docente</td>
+       <td>string</td>
+       <td>Nombre del profesor</td>
     </tr>
   </tbody>
 </table>
