@@ -11,24 +11,24 @@ La base de datos asistencias_db se divide en tres colecciones: estudiantes, curs
   </thead>
   <tbody>
     <tr>
-      <td></td>
-       <td></td>
-       <td></td>
+      <td>_id</td>
+       <td>ObjectId</td>
+       <td>Identificador único</td>
     </tr>
      <tr>
-      <td></td>
-       <td></td>
-       <td></td>
+      <td>codigo</td>
+       <td>string</td>
+       <td>Código institucional del estudiante</td>
     </tr>
      <tr>
-      <td></td>
-       <td></td>
-       <td></td>
+      <td>nombre</td>
+       <td>string</td>
+       <td>Nombre completo</td>
     </tr>
      <tr>
-      <td></td>
-       <td></td>
-       <td></td>
+      <td>programa</td>
+       <td>string</td>
+       <td>Programa académico</td>
     </tr>
   </tbody>
 </table>
