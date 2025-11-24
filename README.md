@@ -272,6 +272,4 @@ db.asistencias.aggregate([
 Resultado: Muestra cuántas asistencias han sido marcadas como "Presente", útil para cálculos de desempeño.<br/>
 <br/>
 <br/>
-<br/>
-<br/>
 <div style="text-align: center;"><b>Marcial &#174 24/11/2025</b><br/></div>
