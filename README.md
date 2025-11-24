@@ -127,6 +127,7 @@ La base de datos asistencias_db se divide en tres colecciones: estudiantes, curs
 
 1.1 Creación de base de datos, colecciones, campos y documentos
 use asistencias_db<br/>
+<br/>
 Consulta 1<br/>
 Creación de la base de datos asistencias_db<br/>
 use asistencias_db<br/>
@@ -176,8 +177,6 @@ db.estudiantes.updateOne(
 Resultados: El nombre del estudiante se actualiza correctamente en la base de datos.
 <br/>
 <br/>
-<br/>
-<br/>
 Consulta 6<br/>
 Eliminación (Eliminar un curso por código)<br/>
 db.cursos.deleteOne({ codigo: "CURS-200" })<br/>
@@ -192,6 +191,7 @@ db.estudiantes.find({ programa: "Ingeniería de Sistemas" })<br/>
 <br/>
 Resultados: Se muestran únicamente los estudiantes inscritos en el programa solicitado.<br/>
 1.3 Consultas con filtros y operadores<br/>
+<br/>
 Consulta 8<br/>
 Buscar asistencias marcadas como “Ausente”<br/>
 db.asistencias.find({ estado: "Ausente" })<br/>
@@ -231,6 +231,7 @@ db.asistencias.find({
 Resultados: Retorna las asistencias en las que el estudiante llegó tarde o estuvo ausente.<br/>
 <br/>
 1.4 Consultas de agregación para calcular estadísticas <br/>
+<br/>
 Consulta 12<br/>
 Contar asistencias por estado<br/>
 db.asistencias.aggregate([
