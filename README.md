@@ -274,4 +274,4 @@ Resultado: Muestra cuántas asistencias han sido marcadas como "Presente", útil
 <br/>
 <br/>
 <br/>
-<div style="text-align: center;"><b>2025</b><br/></div>
+<div style="text-align: center;"><b>Marcial &#174 24/11/2025</b><br/></div>
